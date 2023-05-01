@@ -122,14 +122,11 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $("#clearBtn").click(function () {
-    var index = $(this).parent().data("index");
-    searchedCities.splice(index, 1);
-    localStorage.setItem('searchedCities', JSON.stringify(searchedCities));
+    // Clear all items from local storage
+    localStorage.clear();
 
-
-
-    localStorage.removeItem('searchedCities');
-
+    // Update the UI and store the empty array in local storage
+    searchedCities = [];
     renderCities();
     storeCities();
   });

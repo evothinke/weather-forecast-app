@@ -1,230 +1,242 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-header {
-    
-}
+header {}
+
 #headerTitle {
-    font-size: 40px;
-    padding-top:20px;
-    text-align: left;
+  font-size: 40px;
+  padding-top: 20px;
+  text-align: left;
 }
 
-#searchForACityTitle{
-font-size: 30px;
+#searchForACityTitle {
+  font-size: 30px;
 }
-.body{
-    background: url('./images/image.jpg') no-repeat center center/cover;    
-    content: '';
- 
-  position: absolute;
+
+.body {
+  background: url('./images/image.jpg') no-repeat center center/cover;
+  background-size: auto;
+
+
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   z-index: -1;
   font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
 
-#mainBody{
-    width: 60%;
-    height: 40%;
-    margin-left:auto;
-    margin-right: auto;
-    
-}
-#leftSide{
-    width:30%;
+#mainBody {
+  width: 60%;
+  height: 40%;
+  margin-left: auto;
+  margin-right: auto;
 
 }
-#weatherDisplay{
-    width: 80%;
-    position: relative;
-    margin-left: 30%;
-    margin-top: -100px;
+
+#leftSide {
+  width: 30%;
+
+}
+
+#weatherDisplay {
+  width: 80%;
+  position: relative;
+  margin-left: 30%;
+  margin-top: -100px;
 }
 
 #submitBtn {
-    background-color: #4CAF50;
-    border: none;
-    margin-top: 10px;
-   
-    font-size: 16px;
-   
-    width: 100%;
-  }
-  #clearBtn{
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-  }
-  
-  li {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /*  */
+  background-color: #4CAF50;
+  border: none;
+  margin-top: 10px;
 
+  font-size: 16px;
 
-  
-  ul{
-  
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  #findARecipe{
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  #recipeListDisplay{
-    list-style: none;
-    margin-top: 20px;;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  
-  li{
-    list-style: none;
-    width: 70%;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-  #letsEat{
-   
-    margin: auto;
-    margin-bottom: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 20px 14px;
-    display: block;
-    width: 75%;
-  }
-  
-  .d-flex{
-   
-    display: flex!important;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  width: 100%;
+}
 
+#clearBtn {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 
-    
-  }
-  #navbar {
-    display: grid;
-    
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    
-    font-size: 50px;
-    text-align: justify;
-    padding-top: 20px;
-    padding-left: 40px;
-    color: white;
-    height: 7rem;
-    box-shadow: rgb(0 0 0) 0px 6px 20px 0px;
-  }
-  
-  .card-title{
-    font-family: 'Exo 2', sans-serif;
-      font-size: 25px;
-      color: rgb(0, 0, 0);
-      border-radius: 15px;
-      padding-left: 20px;
-      padding-right: 20px;
-      width: fit-content;
-      box-sizing: content-box;
-      box-shadow: rgb(244 235 5 / 35%) -10px 17px 20px 11px;
-  
-  }
-  #title {
-    font-size: 16px;
-    background-color: white;
-    color: black;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    font-family: 'Exo 2', sans-serif;
-    border-radius: 10px;
-  }
-  
-  #ingredients {
-    font-size: 12;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    border-radius: 10px;
-  }
-  
-  
-  #card1 {
-    width: 20%;
-    margin-right: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
- 
-  }
-  
-  #card2 {
-    width: 60%;
-    margin-right: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  
-  }
+li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  
-  
-  #enterCity{
-    padding: .7rem 1.5rem;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255, 0.8);
-    background: rgba(255,255,255, 0.1);
-    color: #f8f8f8;
-    width: 100%;
-  }
+/*  */
 
 
 
-  #cityNameP{
-    font-size: 30px;
-  }
-  
-  .searchTitle{
-    color: white;
-    margin-top: 20px;
-  }
+ul {
 
-  .card-body{
-    color:white;
-    background-color: rgb(0 0 0 / 30%);
-    margin-bottom: 20px;
-  }
-  .card{
-    width: 150px;
-    display: inline-block;
-    color: white;
-    margin-right: 10px;
-    background-color: rgb(0 0 0 / 30%);
-    padding: 10px;
-  }
-  #forecast{
-    color:white;
-    display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  }
-  .col{
-    display: inline-block;
+#findARecipe {
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
-  }
-  
-.card-body{
+#recipeListDisplay {
+  list-style: none;
+  margin-top: 20px;
+  ;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+li {
+  list-style: none;
+  width: 70%;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#letsEat {
+
+  margin: auto;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0px 20px 14px;
+  display: block;
+  width: 75%;
+}
+
+.d-flex {
+
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+
+}
+
+#navbar {
+  display: grid;
+
+  top: 0px;
+  right: 0px;
+  left: 0px;
+
+  font-size: 50px;
+  text-align: justify;
+  padding-top: 20px;
+  padding-left: 40px;
+  color: white;
+  height: 7rem;
+  box-shadow: rgb(0 0 0) 0px 6px 20px 0px;
+}
+
+.card-title {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: fit-content;
+  box-sizing: content-box;
+  box-shadow: rgb(244 235 5 / 35%) -10px 17px 20px 11px;
+
+}
+
+#title {
+  font-size: 16px;
+  background-color: white;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  font-family: 'Exo 2', sans-serif;
+  border-radius: 10px;
+}
+
+#ingredients {
+  font-size: 12;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
+
+#card1 {
+  width: 20%;
+  margin-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+#card2 {
+  width: 60%;
+  margin-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+
+
+#enterCity {
+  padding: .7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8f8f8;
+  width: 100%;
+}
+
+
+
+#cityNameP {
+  font-size: 30px;
+}
+
+.searchTitle {
+  color: white;
+  margin-top: 20px;
+}
+
+.card-body {
+  color: white;
+  background-color: rgb(0 0 0 / 30%);
+  margin-bottom: 20px;
+}
+
+.card {
+  width: 150px;
+  display: inline-block;
+  color: white;
+  margin-right: 10px;
+  background-color: rgb(0 0 0 / 30%);
+  padding: 10px;
+}
+
+#forecast {
+  color: white;
+  display: inline-block;
+
+}
+
+.col {
+  display: inline-block;
+
+}
+
+.card-body {
   padding-top: 0;
 }
-#clearBtn{
+
+#clearBtn {
 
   font-size: 16px;
 }
