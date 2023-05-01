@@ -7,8 +7,10 @@ const lastCitiesEl = document.getElementById("lastCities");
 const enterCityEl = document.getElementById("enterCity");
 var clearBtn = document.getElementById("clearBtn");
 var todaysDate = new Date().toLocaleDateString();
-console.log("local storage shows " + localStorage);
 let searchedCities = [];
+
+
+
 function renderCities() {
   lastCitiesEl.innerHTML = "";
   for (let i = 0; i < searchedCities.length; i++) {
@@ -16,16 +18,29 @@ function renderCities() {
     const li = document.createElement("li");
     li.textContent = city;
     li.setAttribute("data-index", i);
+    li.addEventListener("click", function() {
+      const city = searchedCities[this.getAttribute("data-index")];
+      fetchWeatherData(city);
+      forecastWeatherData(city);
+    });
     lastCitiesEl.appendChild(li);
   }
 }
+
 
 function init() {
   const storedCities = JSON.parse(localStorage.getItem("searchedCities"));
   if (storedCities !== null) {
     searchedCities = storedCities;
+    renderCities();
   }
-  renderCities();
+
+  // Add click event listener to each city in recent searches list
+  $("li").click(function () {
+    const selectedCity = $(this).text();
+    fetchWeatherData(selectedCity);
+    forecastWeatherData(selectedCity);
+  });
 }
 
 function storeCities() {
@@ -38,14 +53,13 @@ function addCityToList(city) {
   storeCities();
 }
 
+
+
 function fetchWeatherData(city) {
   const cityEntered = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
   fetch(cityEntered)
     .then(response => response.json())
     .then(data => {
-
-
-
       var iconLoc = data.weather[0].icon;
       console.log(iconLoc);
       var iconSrc = '<img src="https://openweathermap.org/img/wn/' + iconLoc + '@2x.png">';
@@ -130,10 +144,6 @@ $(document).ready(function () {
     renderCities();
     storeCities();
   });
-
-
-
-
 
   init();
 });
