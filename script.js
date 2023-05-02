@@ -13,31 +13,31 @@ let searchedCities = [];
 function renderCities() {
   // Get the HTML element with the ID "lastCities" and remove all its child elements
   lastCitiesEl.innerHTML = "";
-  
+
   // Loop through the array of searched cities
   for (let i = 0; i < searchedCities.length; i++) {
     // Get the current city from the array
     const city = searchedCities[i];
-    
+
     // Create a new list item element
     const li = document.createElement("li");
-    
+
     // Set the text content of the list item to the name of the city
     li.textContent = city;
-    
+
     // Set a custom data attribute "data-index" on the list item, with a value equal to the current index in the array
     li.setAttribute("data-index", i);
-    
+
     // Add a click event listener to the list item
-    li.addEventListener("click", function() {
+    li.addEventListener("click", function () {
       // Get the city name from the array, based on the "data-index" attribute of the clicked list item
       const city = searchedCities[this.getAttribute("data-index")];
-      
+
       // Call the functions "fetchWeatherData" and "forecastWeatherData" with the selected city as the argument
       fetchWeatherData(city);
       forecastWeatherData(city);
     });
-    
+
     // Add the new list item to the HTML element with the ID "lastCities"
     lastCitiesEl.appendChild(li);
   }
@@ -48,7 +48,7 @@ function renderCities() {
 function init() {
   // Retrieve the "searchedCities" array from local storage and parse it from JSON format
   const storedCities = JSON.parse(localStorage.getItem("searchedCities"));
-  
+
   // If the retrieved array is not null, update the "searchedCities" variable with its contents and render the list of cities
   if (storedCities !== null) {
     searchedCities = storedCities;
@@ -59,20 +59,25 @@ function init() {
   $("li").click(function () {
     // Get the text content of the clicked list item, which is the name of the selected city
     const selectedCity = $(this).text();
-    
+
     // Call the "fetchWeatherData" and "forecastWeatherData" functions with the selected city as the argument
     fetchWeatherData(selectedCity);
     forecastWeatherData(selectedCity);
   });
 }
 
+// Function to store the "searchedCities" array in local storage, after converting it to a JSON string
 function storeCities() {
   localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
 }
 
+// Function to add a new city to the "searchedCities" array, render the list of cities, and store the updated array in local storage
 function addCityToList(city) {
+
   searchedCities.push(city);
+
   renderCities();
+
   storeCities();
 }
 
@@ -81,22 +86,29 @@ function addCityToList(city) {
 function fetchWeatherData(city) {
   const cityEntered = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
   fetch(cityEntered)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Invalid city entered!");
+      }
+      return response.json();
+    })
     .then(data => {
-      var iconLoc = data.weather[0].icon;
-      console.log(iconLoc);
-      var iconSrc = '<img src="https://openweathermap.org/img/wn/' + iconLoc + '@2x.png">';
-      cityNameEl.innerHTML = data.name + iconSrc + (" (") + todaysDate + (")");
+      var weatherPicture = data.weather[0].icon;
+      var weatherPictureSource = '<img src="https://openweathermap.org/img/wn/' + weatherPicture + '@2x.png">';
+      cityNameEl.innerHTML = data.name + weatherPictureSource + (" (") + todaysDate + (")");
       var k = data.main.temp;
-      console.log(k);
       convertedTemp = Math.round(1.8 * (k - 273) + 32);
       temperatureP.innerHTML = `Local Temperature: ${convertedTemp} F `;
       humidityP.innerHTML = `Humidity: ${data.main.humidity} %`;
       windSpeed.innerHTML = `Wind Speed: ${data.wind.speed} MPH`;
       addCityToList(data.name);
+    })
+    .catch(error => {
+      console.error(error);
+      alert("Invalid city entered!");
     });
-
 }
+
 
 
 const forecastWeatherData = (city) => {
@@ -106,27 +118,30 @@ const forecastWeatherData = (city) => {
     .then(response => response.json())
     .then(data => {
       const list = data.list;
-      console.log(data);
       //weather data for 5 days in 3-hour intervals, 40 data points, 8 data points per day times 5 days
       $("#babaVanga").empty();//.empty() ensuring old data is erased before adding new data
       for (let i = 39; i >= 0; i -= 8) { //weather data for 5 days in 3-hour intervals, 40 data points, 8 data points per day times 5 days
-        const date = new Date(list[i].dt_txt);
-        const iconId = list[i].weather[0].icon;
-        const temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
-        
+        const { dt_txt: dtTxt, weather, main } = list[i];
+        const date = new Date(dtTxt);
+        const { icon: iconId } = weather[0];
+        const temp = ((main.temp - 273.15) * 1.8 + 32).toFixed(2);
+
         const day = date.getDate();
         const month = date.getMonth();
         const year = date.getFullYear();
         const humidity = list[i].main.humidity;
-        const formattedDate = `${month + 1}/${day}/${year}`;
+        const formattedMonth = month + 1;
+        const formattedDate = `${formattedMonth}/${day}/${year}`;
 
-        
+
         const col = $("<div>").addClass("col");
         const tile = $("<div>").addClass("card");
         col.append(tile);
 
         // Create a paragraph tag with the formatted date
-        const p = $("<p>").text(formattedDate);
+        const p = document.createElement("p");
+        const textNode = document.createTextNode(formattedDate);
+        p.appendChild(textNode);
 
         // Create and store an image tag with the weather icon URL
         const iconUrl = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
@@ -145,8 +160,9 @@ const forecastWeatherData = (city) => {
 
         // Prepend the col to the HTML page in the "#forecast" div
         $("#babaVanga").prepend(col);
-      // }
+      }
     });
+
 };
 
 $(document).ready(function () {
