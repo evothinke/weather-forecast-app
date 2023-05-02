@@ -84,8 +84,9 @@ const forecastWeatherData = (city) => {
     .then(data => {
       const list = data.list;
       console.log(data);
-      $("#babaVanga").empty();
-      for (let i = 39; i >= 0; i -= 8) {
+      //weather data for 5 days in 3-hour intervals, 40 data points, 8 data points per day times 5 days
+      $("#babaVanga").empty();//.empty() ensuring old data is erased before adding new data
+      for (let i = 39; i >= 0; i -= 8) { //weather data for 5 days in 3-hour intervals, 40 data points, 8 data points per day times 5 days
         const date = new Date(list[i].dt_txt);
         const iconId = list[i].weather[0].icon;
         const temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
@@ -96,7 +97,7 @@ const forecastWeatherData = (city) => {
         const humidity = list[i].main.humidity;
         const formattedDate = `${month + 1}/${day}/${year}`;
 
-        // Create and store a div tag
+        
         const col = $("<div>").addClass("col");
         const tile = $("<div>").addClass("card");
         col.append(tile);
@@ -121,7 +122,7 @@ const forecastWeatherData = (city) => {
 
         // Prepend the col to the HTML page in the "#forecast" div
         $("#babaVanga").prepend(col);
-      }
+      // }
     });
 };
 
@@ -149,3 +150,4 @@ $(document).ready(function () {
   init();
 });
   //  const forecastLink = `https://api.openweathermap.org/data/2.5/forecast?q=${inputData}&appid=${API_KEY}`;
+  // F = 1.8*(K-273) + 32.
