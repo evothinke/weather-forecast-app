@@ -84,21 +84,22 @@ const forecastWeatherData = (city) => {
     .then(data => {
       const list = data.list;
       console.log(data);
-      $("#forecast").empty();
+      $("#babaVanga").empty();
       for (let i = 39; i >= 0; i -= 8) {
-        const temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
-        const iconId = list[i].weather[0].icon;
-        const humidity = list[i].main.humidity;
         const date = new Date(list[i].dt_txt);
+        const iconId = list[i].weather[0].icon;
+        const temp = ((list[i].main.temp - 273.15) * 1.8 + 32).toFixed(2);
+        
         const day = date.getDate();
         const month = date.getMonth();
         const year = date.getFullYear();
+        const humidity = list[i].main.humidity;
         const formattedDate = `${month + 1}/${day}/${year}`;
 
         // Create and store a div tag
         const col = $("<div>").addClass("col");
-        const mycard = $("<div>").addClass("card");
-        col.append(mycard);
+        const tile = $("<div>").addClass("card");
+        col.append(tile);
 
         // Create a paragraph tag with the formatted date
         const p = $("<p>").text(formattedDate);
@@ -106,20 +107,20 @@ const forecastWeatherData = (city) => {
         // Create and store an image tag with the weather icon URL
         const iconUrl = `https://openweathermap.org/img/wn/${iconId}@2x.png`;
 
-        const weatherImage = $("<img>").attr("src", iconUrl).css({ width: "100px", height: "100px" });
+        const icon = $("<img>").attr("src", iconUrl).css({ width: "100px", height: "100px" });
 
         // Create two paragraph tags with the temperature and humidity
-        const p1 = $("<p>").text(`Temp: ${temp}°F`);
-        const p2 = $("<p>").text(`Humidity: ${humidity}%`);
+        const tempText = $("<p>").text(`Temp: ${temp}°F`);
+        const humidityText = $("<p>").text(`Humidity: ${humidity}%`);
 
-        // Append the paragraph and image tags to mycard
-        mycard.append(p);
-        mycard.append(weatherImage);
-        mycard.append(p1);
-        mycard.append(p2);
+        // Append the paragraph and image tags to tile
+        tile.append(icon);
+        tile.append(p);
+        tile.append(tempText);
+        tile.append(humidityText);
 
         // Prepend the col to the HTML page in the "#forecast" div
-        $("#forecast").prepend(col);
+        $("#babaVanga").prepend(col);
       }
     });
 };
