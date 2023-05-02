@@ -10,34 +10,57 @@ var todaysDate = new Date().toLocaleDateString();
 let searchedCities = [];
 
 
-
 function renderCities() {
+  // Get the HTML element with the ID "lastCities" and remove all its child elements
   lastCitiesEl.innerHTML = "";
+  
+  // Loop through the array of searched cities
   for (let i = 0; i < searchedCities.length; i++) {
+    // Get the current city from the array
     const city = searchedCities[i];
+    
+    // Create a new list item element
     const li = document.createElement("li");
+    
+    // Set the text content of the list item to the name of the city
     li.textContent = city;
+    
+    // Set a custom data attribute "data-index" on the list item, with a value equal to the current index in the array
     li.setAttribute("data-index", i);
+    
+    // Add a click event listener to the list item
     li.addEventListener("click", function() {
+      // Get the city name from the array, based on the "data-index" attribute of the clicked list item
       const city = searchedCities[this.getAttribute("data-index")];
+      
+      // Call the functions "fetchWeatherData" and "forecastWeatherData" with the selected city as the argument
       fetchWeatherData(city);
       forecastWeatherData(city);
     });
+    
+    // Add the new list item to the HTML element with the ID "lastCities"
     lastCitiesEl.appendChild(li);
   }
 }
 
 
+
 function init() {
+  // Retrieve the "searchedCities" array from local storage and parse it from JSON format
   const storedCities = JSON.parse(localStorage.getItem("searchedCities"));
+  
+  // If the retrieved array is not null, update the "searchedCities" variable with its contents and render the list of cities
   if (storedCities !== null) {
     searchedCities = storedCities;
     renderCities();
   }
 
-  // Add click event listener to each city in recent searches list
+  // Add a click event listener to each list item element on the page
   $("li").click(function () {
+    // Get the text content of the clicked list item, which is the name of the selected city
     const selectedCity = $(this).text();
+    
+    // Call the "fetchWeatherData" and "forecastWeatherData" functions with the selected city as the argument
     fetchWeatherData(selectedCity);
     forecastWeatherData(selectedCity);
   });
